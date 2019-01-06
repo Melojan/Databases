@@ -85,5 +85,3 @@ WHERE NOT
 (Suspect.height > 170 AND lower(Suspect.surname) LIKE 'Gre_n' AND lower(Suspect.name) LIKE 'b%')
 ORDER BY id;
 END
-
-
