@@ -125,3 +125,79 @@ UNION
 SELECT subscriber FROM half_year WHERE newspaper LIKE '%DAILY%'
 ORDER BY subscriber ASC;
 END
+
+countriesInfo :
+
+CREATE PROCEDURE countriesInfo()
+BEGIN
+SELECT COUNT(name) AS number, AVG(population) AS average, SUM(population) AS total 
+FROM countries;
+END
+
+itemCounts :
+
+CREATE PROCEDURE itemCounts()
+BEGIN
+SELECT item_name,item_type, COUNT(*) AS item_count
+FROM availableItems
+GROUP BY item_type,item_name
+ORDER BY item_type ASC,item_name ASC;
+END
+
+usersByContinent :
+
+CREATE PROCEDURE usersByContinent()
+BEGIN
+SELECT continent, SUM(users) as users FROM countries
+GROUP BY continent
+ORDER BY users DESC;
+END
+
+movieDirectors :
+
+CREATE PROCEDURE movieDirectors()
+BEGIN
+SELECT director FROM moviesInfo
+WHERE year > 2000
+GROUP BY director
+HAVING SUM(oscars) > 2
+ORDER BY director ASC;
+END;
+
+travelDiary :
+
+CREATE PROCEDURE travelDiary()
+BEGIN
+SELECT GROUP_CONCAT(DISTINCT country ORDER BY country ASC SEPARATOR ';')
+AS countries FROM diary;
+END
+
+soccerPlayers :
+
+CREATE PROCEDURE soccerPlayers()
+BEGIN
+SELECT GROUP_CONCAT(first_name,' ',surname,' #',player_number ORDER BY player_number ASC SEPARATOR '; ')
+AS players FROM soccer_team;
+END
+
+marketReport :
+
+CREATE PROCEDURE marketReport()
+BEGIN
+SELECT country, COUNT(country) AS competitors FROM foreignCompetitors
+GROUP BY country
+UNION
+SELECT 'Total:',COUNT(country) AS competitors FROM foreignCompetitors;
+END
+
+
+
+
+
+
+
+
+
+
+
+
