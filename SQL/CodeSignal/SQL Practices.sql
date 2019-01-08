@@ -1,4 +1,4 @@
-projectList : 
+projectList :
 
 CREATE PROCEDURE projectList()
 BEGIN
@@ -90,8 +90,9 @@ securityBreach :
 
 CREATE PROCEDURE securityBreach()
 BEGIN
-SELECT * FROM users WHERE attribute LIKE BINARY CONCAT('%_\%,first_name, '\_', second_name, '\%%') ORDER BY attribute ASC;
+SELECT * FROM users WHERE attribute LIKE BINARY CONCAT('%_\%,'first_name,'\_',second_name, '\%%') ORDER BY attribute ASC;
 END
+
 
 testCheck :
 
@@ -107,7 +108,7 @@ BEGIN
 SELECT * FROM expressions
 WHERE
 CASE operation
-WHEN '+' THEN a + b  
+WHEN '+' THEN a + b
 WHEN '-' THEN a - b
 WHEN '/' THEN a / b
 WHEN '*' THEN a * b
@@ -124,19 +125,3 @@ UNION
 SELECT subscriber FROM half_year WHERE newspaper LIKE '%DAILY%'
 ORDER BY subscriber ASC;
 END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
